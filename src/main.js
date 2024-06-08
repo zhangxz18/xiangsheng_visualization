@@ -2,18 +2,18 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css'
+import router from './router'
 import App from './App.vue'
-import d3test from './d3test.vue'
-import menu from './menu.vue'
+// import D3test from './D3test.vue'
+// import Menu from './components/Menu.vue'
 
 
-const testapp = createApp(d3test)
-testapp.use(ElementPlus)
-testapp.mount('#app')
+// const testapp = createApp(D3test)
+// testapp.use(ElementPlus)
+// testapp.mount('#D3test')
 
-const menuapp = createApp(menu)
-menuapp.use(ElementPlus)
-menuapp.mount('#menu')
+const app = createApp(App)
+app.use(router)
+app.use(ElementPlus)
+app.mount('#app')
 
-
-// createApp(App).mount('#app2')
