@@ -1,7 +1,12 @@
 <template>
     <div class="main_page">
         <PageTitle msg="Vue.js and D3 Line Chart" />
-        <svg width="800" height="800" id="mainsvg" class="svgs"></svg>
+        <el-card class="box-card">
+            <div>
+                <svg width="800" height="800" id="mainsvg" class="svgs"></svg>
+            </div>
+        </el-card>
+        
     </div>
 </template>
 
