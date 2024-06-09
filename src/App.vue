@@ -19,11 +19,12 @@ const handleClose = (key, keyPath) => {
 <template>
   <div class="layout-container-demo">
   <el-container class="page_container">
-    <el-header> 
-      
-      <div class="logo">
+    <el-header class="header-flex"> 
+    <img alt="logo" class="logo" src="/logo.jpg" width="50" height="50"/>
+    <h1>相声可视化</h1>      
+      <!-- <div class="logo">
         <img src="/logo.jpg" alt="xiangsheng logo" />
-      </div>
+      </div> -->
           
     </el-header>
     <el-container >
@@ -110,10 +111,17 @@ div.layout-container-demo {
 
 }
 
+.layout-container-demo .el-header h1 {
+  margin-left: 20px; /* Adjust the value as needed */
+}
+
+
 .layout-container-demo .el-header {
   background-color: #fff;
   color: var(--el-text-color-primary);
   padding: 8px;
+  display: flex;
+  align-items: center;
 }
 .layout-container-demo .el-aside {
   position: relative;

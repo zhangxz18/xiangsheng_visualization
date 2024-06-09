@@ -7,7 +7,8 @@ import D3test from './D3test.vue';
 const router = createRouter({
     history: createWebHashHistory(),
     routes:[
-    { path: '/', name:'word' ,component: Word },
+    { path: '/', redirect: '/word' },
+    { path: '/word', name:'word' ,component: Word },
     { path: '/sentence', name:'sentence', component: Sentence },
     { path: '/paragraph', name:'paragraph', component: Paragraph },
     { path: '/d3test', name:'d3test', component: D3test },]
