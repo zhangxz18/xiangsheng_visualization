@@ -23,3 +23,8 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## todo
+- [ ] 子标签起名字
+- [ ] logo改成透明背景
+- [ ] word和sentence加选择框
