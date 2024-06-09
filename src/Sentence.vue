@@ -1,9 +1,14 @@
 <template>
-    <div>
-      <h2>sentence</h2>
-        <!-- <svg width="1600" height="800" id="mainsvg" class="svgs"></svg> -->
+    <div class="main_page">
+        <PageTitle msg="Sentence" />
+        <svg  id="mainsvg" class="svgs"></svg>
     </div>
 </template>
+
+<script setup>
+import * as d3 from "d3";
+import PageTitle from './components/PageTitle.vue';
+</script>
 
 <script>
 import * as d3 from "d3";

@@ -54,7 +54,7 @@ const handleClose = (key, keyPath) => {
               </el-menu-item>
               <el-menu-item index="/d3test" @click="handleSelect('d3test')">
                 <el-icon><setting /></el-icon>
-                <span>Test</span>
+                <span>D3 Example</span>
               </el-menu-item>
             </el-menu>
           </el-col>

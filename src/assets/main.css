@@ -10,6 +10,11 @@
   font-weight: normal;
 }
 
+div.main_page {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
 a,
 .green {
   text-decoration: none;
