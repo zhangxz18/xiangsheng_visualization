@@ -25,7 +25,7 @@
 import { ref, onMounted } from 'vue';
 import PageTitle from './components/PageTitle.vue';
 
-const mdFiles = ref(['百戏名.md', '不宜动土.md', '当行论.md']);
+const mdFiles = ref(['百戏名.md', '不宜动土.md', '当行论.md', '画扇面.md', '开殃榜.md', '练气功.md', '刘伶醉酒.md', '扭嘴儿.md', '聘秘书.md', '山西家信.md', '邵康节测字.md', '双音字.md', '说大话.md', '阳平关.md', '战马超.md', '主客问答.md']);
 const selectedFile = ref(mdFiles.value[0]);
 const lines = ref([]);
 const currentEmoji = ref('');
