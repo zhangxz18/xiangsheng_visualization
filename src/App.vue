@@ -1,98 +1,133 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import Menu from './components/Menu.vue'
-import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
-} from '@element-plus/icons-vue'
-const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key, keyPath) => {
-  console.log(key, keyPath)
-}
-</script>
-
 <template>
   <div class="layout-container-demo">
-  <el-container class="page_container">
-    <el-header class="header-flex"> 
-    <img alt="logo" class="logo" src="/logo.jpg" width="50" height="50"/>
-    <h1>相声可视化</h1>      
-      <!-- <div class="logo">
-        <img src="/logo.jpg" alt="xiangsheng logo" />
-      </div> -->
-          
-    </el-header>
-    <el-container >
-      <el-aside width="250px">
-        <el-row class="tac">
-          <el-col :span="24">
-            <!-- <h5 class="mb-2">Custom colors</h5> -->
-            <el-menu
-              class="el-menu-vertical-demo"
-              :default-active="activeIndex"
-              @open="handleOpen"
-              @close="handleClose"
-            >
-              <el-menu-item index="/word" @click="handleSelect('word')">
-                <template #title>
-                  <el-icon><location /></el-icon>
-                  <span>Word</span>
-                </template>
-              </el-menu-item>
-              <el-menu-item index="/sentence" @click="handleSelect('sentence')">
-                <el-icon><icon-menu /></el-icon>
-                <span>Sentence</span>
-              </el-menu-item>
-              <el-menu-item index="/paragraph" @click="handleSelect('paragraph')">
-                <el-icon><document /></el-icon>
-                <span>Paragraph</span>
-              </el-menu-item>
-              <el-menu-item index="/d3test" @click="handleSelect('d3test')">
-                <el-icon><setting /></el-icon>
-                <span>D3 Example</span>
-              </el-menu-item>
-            </el-menu>
-          </el-col>
-        </el-row>
-      </el-aside>
-      <el-main><RouterView /></el-main>
+    <el-container class="page_container">
+      <el-header class="header-flex">
+        <img alt="logo" class="logo" src="/logo.jpg" width="50" height="50" />
+        <h1>相声可视化</h1>
+      </el-header>
+      <el-container>
+        <el-aside width="250px">
+          <el-row class="tac">
+            <el-col :span="24">
+              <el-menu
+                class="el-menu-vertical-demo"
+                :default-active="activeIndex"
+                @open="handleOpen"
+                @close="handleClose"
+              >
+                <el-menu-item index="/word" @click="handleSelect('word')">
+                  <template #title>
+                    <el-icon><location /></el-icon>
+                    <span>Word</span>
+                  </template>
+                </el-menu-item>
+                <el-menu-item index="/sentence" @click="handleSelect('sentence')">
+                  <el-icon><icon-menu /></el-icon>
+                  <span>Sentence</span>
+                </el-menu-item>
+                <el-menu-item index="/paragraph" @click="handleSelect('paragraph')">
+                  <el-icon><document /></el-icon>
+                  <span>Paragraph</span>
+                </el-menu-item>
+                <el-menu-item index="/d3test" @click="handleSelect('d3test')">
+                  <el-icon><setting /></el-icon>
+                  <span>D3 Example</span>
+                </el-menu-item>
+                <div class="menu-checkbox-container">
+                  <h3>XiangSheng Directory
+                    <el-button size="mini" @click="selectAll">全选</el-button>
+                    <el-button size="mini" @click="deselectAll">取消</el-button>
+                  </h3>
+                  <el-checkbox-group v-model="selectedFiles">
+                    <div class="checkbox-scroll">
+                      <el-checkbox
+                        v-for="file in files"
+                        :key="file"
+                        :label="file"
+                      >{{ file }}</el-checkbox>
+                    </div>
+                  </el-checkbox-group>
+                  <el-button type="primary" @click="processFiles">确认</el-button>
+                </div>
+              </el-menu>
+            </el-col>
+          </el-row>
+        </el-aside>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
     </el-container>
-  </el-container>
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      activeIndex: 'word', // Set to the default route name or path
-    };
-  },
-  watch: {
-    $route () {
-      this.setCurrentRoute()
-    }
-  },
-  mounted () {
-  },
-  created () {
-    this.setCurrentRoute()
-  },
-  methods: {
-    handleSelect (key) {
-      // Update the route based on the selected menu item
-      this.$router.push({ name: key });
-    },
-    setCurrentRoute () {
-      this.activeIndex = this.$route.name;
-    }
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import {
+  Document,
+  Menu as IconMenu,
+  Location,
+  Setting,
+} from '@element-plus/icons-vue';
+
+const files = ref([]);
+const selectedFiles = ref([]);
+const activeIndex = ref('word');
+const router = useRouter()
+
+
+const handleOpen = (key, keyPath) => {
+  console.log(key, keyPath);
+};
+
+const handleClose = (key, keyPath) => {
+  console.log(key, keyPath);
+};
+
+const handleSelect = (key) => {
+  // Update the route based on the selected menu item
+  // this.$router.push({ name: key });
+  console.log('Selected:', key);
+};
+
+const fetchFiles = async () => {
+  try {
+    const response = await axios.get('http://localhost:3001/api/files');
+    files.value = response.data;
+  } catch (error) {
+    console.error('Error fetching files:', error);
   }
-}
+};
+
+const processFiles = async () => {
+  try {
+    const response = await axios.post('http://localhost:3001/api/process-files', {
+      files: selectedFiles.value,
+    });
+
+    console.log('Processing response:', response.data);
+    
+    router.push({ name: 'word', query: { data: JSON.stringify(response.data) } });
+    
+  } catch (error) {
+    console.error('Error processing files:', error);
+  }
+};
+
+
+const selectAll = () => {
+  selectedFiles.value = files.value.slice();
+};
+
+const deselectAll = () => {
+  selectedFiles.value = [];
+};
+
+onMounted(() => {
+  fetchFiles();
+});
 </script>
 
 <style scoped>
@@ -106,16 +141,12 @@ div.layout-container-demo {
 .el-row.tac {
   height: 100%;
 }
-.el-menu{
+.el-menu {
   height: 100%;
-
 }
-
 .layout-container-demo .el-header h1 {
   margin-left: 20px; /* Adjust the value as needed */
 }
-
-
 .layout-container-demo .el-header {
   background-color: #fff;
   color: var(--el-text-color-primary);
@@ -125,7 +156,6 @@ div.layout-container-demo {
 }
 .layout-container-demo .el-aside {
   position: relative;
-
   color: var(--el-text-color-primary);
   /* background: var(--el-color-primary-light-8); */
 }
@@ -134,5 +164,34 @@ div.layout-container-demo {
 }
 .layout-container-demo .el-main {
   padding: 0;
+}
+
+.menu-checkbox-container {
+  margin-top: 10px;
+  padding: 10px;
+  border-top: 1px solid #ebeef5;
+}
+
+.menu-checkbox-container h3 {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.menu-checkbox-container .el-button {
+  margin-left: 5px;
+  font-size: 12px;
+  padding: 3px 5px;
+}
+
+.checkbox-scroll {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #ebeef5;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 </style>

@@ -6,12 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-server": "node src/server.js"
   },
   "dependencies": {
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "d3": "^7.9.0",
     "element-plus": "^2.7.5",
+    "express": "^4.19.2",
     "vue": "^3.4.21",
+    "vue-easy-lightbox": "^1.19.0",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
