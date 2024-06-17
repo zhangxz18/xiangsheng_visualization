@@ -63,11 +63,11 @@ const fetchurl = async () => {
   const data = route.query.data ? JSON.parse(route.query.data) : null;
   console.log('Received_push_data:', data);
   if (data) {
-    wordcloudImage.value = `http://localhost:3001/${data.wordcloud_image}`;
-    wordbarImage.value = `http://localhost:3001/${data.wordbar_image_path}`;
+    wordcloudImage.value = `${window.location.origin}/${data.wordcloud_image}`;
+    wordbarImage.value = `${window.location.origin}/${data.wordbar_image_path}`;
     // Fetch the word frequency data from the provided path
     try {
-      const wordFreqResponse = await axios.get(`http://localhost:3001/${data.word_freq_path}`);
+      const wordFreqResponse = await axios.get(`${window.location.origin}/${data.word_freq_path}`);
       wordFreq.value = wordFreqResponse.data;
     } catch (error) {
       console.error('Error fetching word frequency data:', error);
