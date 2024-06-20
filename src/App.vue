@@ -88,7 +88,7 @@ const handleClose = (key, keyPath) => {
 
 const handleSelect = (key) => {
   // Update the route based on the selected menu item
-  // this.$router.push({ name: key });
+  router.push({ name: key });
   console.log('Selected:', key);
 };
 

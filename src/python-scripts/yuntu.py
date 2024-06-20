@@ -95,7 +95,8 @@ def main():
 
 
 
-    base_path = r'D:\jupyter_notebook_exam\xiangsheng_visualization-master\public'#需要自行修改，这里存放你的项目下面public文件夹绝对路径，不要有中文路径
+    #base_path = r'D:\jupyter_notebook_exam\xiangsheng_visualization-master\public'#需要自行修改，这里存放你的项目下面public文件夹绝对路径，不要有中文路径
+    base_path = os.path.join(os.path.dirname(__file__), '../../public')
     
     uu=uuid.uuid4()
     wordcloud_image_path = os.path.join(base_path,f"{uu}.png")

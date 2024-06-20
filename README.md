@@ -43,7 +43,7 @@ npm run build
 
 node:
     注意在vscode配置python的虚拟环境，然后安装所需要的包，配置完虚拟环境，激活虚拟环境，然后pip install -r requirements.txt
-    注意要修改yuntu.py中base_path
-    注意把所有的相声txt文件放在D盘下的xiangsheng文件夹下，不然你自己在代码中找地方改路径
+   
+    注意把所有的相声txt文件放在的项目根目录的xiangsheng文件夹下，
     生成的图和数据都在项目里的public文件夹里面
     

@@ -13,9 +13,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-
+const directoryPath = path.join(__dirname, '../xiangsheng');
 app.get('/api/files', async (req, res) => {
-  const directoryPath = 'D:/xiangsheng/'; // 修改为你的文件路径，
+  //const directoryPath = 'D:/xiangsheng/'; // 修改为你的文件路径，
   try {
     console.log(`Reading directory: ${directoryPath}`);
     const files = await fs.readdir(directoryPath);
@@ -33,7 +33,7 @@ app.get('/api/files', async (req, res) => {
 
 app.post('/api/process-files', async (req, res) => {
   const { files } = req.body;
-  const directoryPath = 'D:/xiangsheng'; // 修改为你的文件路径
+  //const directoryPath = 'D:/xiangsheng'; // 修改为你的文件路径
     
   const filepath = files.map(file => ({ path: path.join(directoryPath, file) }));
 
@@ -42,7 +42,10 @@ app.post('/api/process-files', async (req, res) => {
 
   const a=JSON.stringify(filepath);
   // 调用 Python 脚本并传递文件内容
-  const pythonProcess = spawn('python', ['src/python-scripts/yuntu.py']);
+  //const pythonProcess = spawn('python', ['src/python-scripts/yuntu.py']);
+  const pythonScriptPath = path.join(__dirname,'python-scripts', 'yuntu.py');
+  const pythonProcess = spawn('python', [pythonScriptPath]);
+
   pythonProcess.stdin.write(a);
   pythonProcess.stdin.end();
 
@@ -52,10 +55,16 @@ app.post('/api/process-files', async (req, res) => {
   pythonProcess.stdout.on('data', (data) => {
     dataBuffer += data.toString();
   });
+  // function convertToPublicPath(filePath) {
+  //   const fileName = filePath.split('\\').pop(); // 获取文件名部分
+  //   return `public/${fileName}`;
+  // }
   function convertToPublicPath(filePath) {
-    const fileName = filePath.split('\\').pop(); // 获取文件名部分
-    return `public/${fileName}`;
+    const relativePath = path.relative(path.join(__dirname, '../public'), filePath);
+    return `public/${relativePath.replace(/\\/g, '/')}`;
   }
+
+
   pythonProcess.stdout.on('end', () => {
     if (!responseSent) {
       try {
