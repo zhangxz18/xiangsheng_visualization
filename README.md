@@ -2,7 +2,10 @@
 
 An xiangsheng visualization network developed with Vue 3 and element plus.
 
-## Project Setup
+# data source
+https://nianzi.site/
+
+## Project Setup and Run
 Download node.js from https://nodejs.org/en.
 
 
@@ -10,40 +13,21 @@ Download node.js from https://nodejs.org/en.
 git clone https://github.com/zhangxz18/xiangsheng_visualization.git
 cd xiangsheng_visualization
 npm install
+pip install -r requirements.txt
 ```
 
-### Compile and Hot-Reload for Development
+### Run
 
 ```sh
+# in one terminal
+npm run start-server
+# in another terminal
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-## todo
-- [ ] 子标签起名字
-- [ ] logo改成透明背景
-### 词
-+ 对每篇相声做分词
-+ 加一个多选框，可以选择需要的相声（默认全选）
-+ 根据选择的相声，显示词云/词频统计
-### 句
-+ 加一个单选框，可以选择需要的相声
-+ 根据选择的相声，允许每一句交互式地加emoji
-### 主题
-+ 找个model对相声主题做分类
-+ 根据分类结果，画主题河流
-### 如果觉得工作量不够
-+ 相声长度的分布
-+ 逗哏捧哏的时长分布对比
-
-node:
+<!-- note:
     注意在vscode配置python的虚拟环境，然后安装所需要的包，配置完虚拟环境，激活虚拟环境，然后pip install -r requirements.txt
    
     注意把所有的相声txt文件放在的项目根目录的xiangsheng文件夹下，
-    生成的图和数据都在项目里的public文件夹里面
+    生成的图和数据都在项目里的public文件夹里面 -->
     

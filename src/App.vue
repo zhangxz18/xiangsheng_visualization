@@ -18,20 +18,20 @@
                 <el-menu-item index="/word" @click="handleSelect('word')">
                   <template #title>
                     <el-icon><location /></el-icon>
-                    <span>Word</span>
+                    <span>词云和词频</span>
                   </template>
                 </el-menu-item>
                 <el-menu-item index="/sentence" @click="handleSelect('sentence')">
                   <el-icon><icon-menu /></el-icon>
-                  <span>Sentence</span>
+                  <span>情绪演绎</span>
                 </el-menu-item>
                 <el-menu-item index="/paragraph" @click="handleSelect('paragraph')">
                   <el-icon><document /></el-icon>
-                  <span>Paragraph</span>
+                  <span>主题分析：堆叠柱状图</span>
                 </el-menu-item>
                 <el-menu-item index="/d3test" @click="handleSelect('d3test')">
                   <el-icon><setting /></el-icon>
-                  <span>D3 Example</span>
+                  <span>主题分析：桑基图</span>
                 </el-menu-item>
                 <div class="menu-checkbox-container">
                   <h3>XiangSheng Directory

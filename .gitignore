@@ -28,3 +28,7 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+xiangsheng_copy
+public/*-*-*-*-*.json
+public/*-*-*-*-*.png
+public/*-*-*-*-*.jpg
