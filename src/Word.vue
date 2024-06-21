@@ -2,7 +2,7 @@
   <div class="main_page">
     <PageTitle msg="Word" />
     <el-row :gutter="20" style="margin-left: 0">
-      <el-col :span="12">
+      <el-col :span="20">
         <el-card class="box-card black-bg white-text">
           <div slot="header" class="clearfix">
             <span>词云</span>
@@ -19,14 +19,14 @@
 
         </el-card>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="4">
         <el-card class="box-card black-bg white-text" >
           <div slot="header" class="clearfix">
             <span>词频统计</span>
           </div>
           <div>
             <ul>
-              <li v-for="(value, key) in wordFreq" :key="key" class="word-freq-item">
+              <li v-for="(value, key, index) in wordFreq" :key="key" class="word-freq-item" >
                 <span class="word-key">{{ key }}</span>: 
                 <span class="word-value">{{ value }}</span>
               </li>
@@ -69,6 +69,8 @@ const fetchurl = async () => {
     try {
       const wordFreqResponse = await axios.get(`${window.location.origin}/${data.word_freq_path}`);
       wordFreq.value = wordFreqResponse.data;
+      // limit the wordfreq length to 100
+      wordFreq.value = Object.fromEntries(Object.entries(wordFreq.value).slice(0, 100));
     } catch (error) {
       console.error('Error fetching word frequency data:', error);
     }
@@ -108,7 +110,7 @@ const openLightbox = (type) => {
 }
 .box-card {
   display: flex;
-  width: 650px;
+  width: 100%;
 }
 .white-text {
   color: #fff; 
