@@ -1,5 +1,6 @@
 import csv
 import os
+import numpy as np
 
 csv_file_path = "../theme_and_time.csv"
 xiangsheng_type= ["传统节目", "新编节目", "当代节目"]
@@ -50,10 +51,13 @@ with open(csv_file_path, "r", encoding="utf-16") as csv_file:
     for d in data:
         for key in keys:
             if key in d:
+                result = np.log(d[key])
+                if result <= 0.0001:
+                    result = 0.01
                 links.append({
                     "source": name2index[d["time"]],
                     "target": name2index[key],
-                    "value": d[key]
+                    "value": result
                 })
     json_data = {
         "nodes": nodes,

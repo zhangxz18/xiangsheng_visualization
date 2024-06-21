@@ -1,6 +1,6 @@
 <template>
     <div class="main_page">
-        <PageTitle msg="Vue.js and D3 Line Chart" />
+        <PageTitle msg="桑基图" />
         <el-card class="box-card">
             <div>
                 <svg width="1100" height="1300" id="mainsvg" class="svgs"></svg>
@@ -32,41 +32,9 @@ export default {
         const yValue = d => d.platform;
         const xScale = d3.scaleLinear();
         const yScale = d3.scaleBand();
-        var json = {
-          'nodes': [
-            {'name': '传统节目'},
-            {'name': '新编节目'},
-            {'name': '当代节目'},
-            {'name': '经济'},
-            {'name': '教育'},
-            {'name': '科学'},
-            {'name': '社会'},
-            {'name': '政治'},
-            {'name': '体育'},
-            {'name': '娱乐'},
-            {'name': '历史'}
-          ],
-          'links': [
-            {'source': 0, 'target': 3, 'value': 22},
-            {'source': 0, 'target': 4, 'value': 27},
-            {'source': 0, 'target': 5, 'value': 1},
-            {'source': 0, 'target': 6, 'value': 79},
-            {'source': 0, 'target': 7, 'value': 5},
-            {'source': 0, 'target': 9, 'value': 354},
-            {'source': 0, 'target': 10, 'value': 56},
-            {'source': 1, 'target': 4, 'value': 1},
-            {'source': 1, 'target': 6, 'value': 7},
-            {'source': 1, 'target': 7, 'value': 1},
-            {'source': 1, 'target': 8, 'value': 1},
-            {'source': 1, 'target': 9, 'value': 24},
-            {'source': 1, 'target': 10, 'value': 2},
-            {'source': 2, 'target': 5, 'value': 1},
-            {'source': 2, 'target': 6, 'value': 6},
-            {'source': 2, 'target': 7, 'value': 3},
-            {'source': 2, 'target': 9, 'value': 21},
-            {'source': 2, 'target': 10, 'value': 1}
-          ]
-        };
+        var json = {'nodes': [{'name': '传统节目'}, {'name': '新编节目'}, {'name': '当代节目'}, {'name': '经济'}, {'name': '教育'}, {'name': '科学'}, {'name': '社会'}, {'name': '政治'}, {'name': '体育'}, {'name': '娱乐'}, {'name': '历史'}], 'links': [{'source': 0, 'target': 3, 'value': 3.091042453358316}, 
+{'source': 0, 'target': 4, 'value': 3.295836866004329}, {'source': 0, 'target': 5, 'value': 0.01}, {'source': 0, 'target': 6, 'value': 4.3694478524670215}, {'source': 0, 'target': 7, 'value': 
+1.6094379124341003}, {'source': 0, 'target': 9, 'value': 5.869296913133774}, {'source': 0, 'target': 10, 'value': 4.02535169073515}, {'source': 1, 'target': 4, 'value': 0.01}, {'source': 1, 'target': 6, 'value': 1.9459101490553132}, {'source': 1, 'target': 7, 'value': 0.01}, {'source': 1, 'target': 8, 'value': 0.01}, {'source': 1, 'target': 9, 'value': 3.1780538303479458}, {'source': 1, 'target': 10, 'value': 0.6931471805599453}, {'source': 2, 'target': 5, 'value': 0.01}, {'source': 2, 'target': 6, 'value': 1.791759469228055}, {'source': 2, 'target': 7, 'value': 1.0986122886681098}, {'source': 2, 'target': 9, 'value': 3.044522437723423}, {'source': 2, 'target': 10, 'value': 0.01}]};
         
         // const width = 700, height = 400;
         let color = d3.scale
@@ -93,8 +61,8 @@ export default {
             .style("fill", d => getColor(d.name)) // Change the fill color based on node name
             .style("stroke", "black")
             .style("stroke-width", 1)
-            .append("title")
-            .text(d => `${d.name}\n${d.value}`);
+            .append("title");
+            // .text(d => `${d.name}\n${d.value}`);
 
         function getColor(name) {
             // Define your color mapping logic here

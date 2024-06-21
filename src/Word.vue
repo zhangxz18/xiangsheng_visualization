@@ -1,6 +1,6 @@
 <template>
   <div class="main_page">
-    <PageTitle msg="Word" />
+    <PageTitle msg="词云和词缀" />
     <el-row :gutter="20" style="margin-left: 0">
       <el-col :span="20">
         <el-card class="box-card black-bg white-text">

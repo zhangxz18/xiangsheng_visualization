@@ -1,6 +1,6 @@
 <template>
   <div class="main_page">
-    <PageTitle msg="Sentence" />
+    <PageTitle msg="情绪演绎" />
     <select v-model="selectedFile" @change="loadMdFile" class="custom-select">
       <option v-for="file in mdFiles" :key="file" :value="file">{{ file }}</option>
     </select>
